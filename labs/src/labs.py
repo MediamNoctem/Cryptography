@@ -335,6 +335,6 @@ def Pollard_rho_factorization(n):
 # 4 14
 # 4 7
 # 5 10
-solve_quadratic_comparison(7, 13)
+# solve_quadratic_comparison(7, 13)
 # Pollard_p_1_factorization(687, 3)
 # Pollard_rho_factorization(687)

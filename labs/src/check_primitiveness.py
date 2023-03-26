@@ -66,7 +66,7 @@ if __name__ == '__main__':
     test1 = [1, 0, 1, 0]  # x^3 + x
     test2 = [1, 1, 0, 1, 1]  # x^4 + x^3 + x + 1
     test3 = [1, 1, 1]  # x^2 + x + 1
-    test4 = [1, 0, 1, 1, 0, 1, 1]
+    test4 = [1, 0, 0, 1, 1]
 
     if not is_neprivodim(test4):
         print('Приводимый, непримитивный')
