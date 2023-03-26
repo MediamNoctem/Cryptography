@@ -52,7 +52,7 @@ def is_primitiv(x):
 def is_neprivodim(x):
     i = 0
 
-    while len(min_neprivodim_mch[i]) <= len(x):
+    while len(min_neprivodim_mch[i]) <= len(x) / 2:
         q, r = divmod_polly(x, min_neprivodim_mch[i])
 
         if r == [0] and min_neprivodim_mch[i] != x:
@@ -66,9 +66,9 @@ if __name__ == '__main__':
     test1 = [1, 0, 1, 0]  # x^3 + x
     test2 = [1, 1, 0, 1, 1]  # x^4 + x^3 + x + 1
     test3 = [1, 1, 1]  # x^2 + x + 1
-    test4 = [1, 1, 0, 0, 0, 0, 1]
+    test4 = [1, 0, 1, 1, 0, 1, 1]
 
-    if not is_neprivodim(test3):
+    if not is_neprivodim(test4):
         print('Приводимый, непримитивный')
     else:
         print('Неприводимый, ', end='')

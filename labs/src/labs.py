@@ -330,11 +330,11 @@ def Pollard_rho_factorization(n):
     return p
 
 
-calc_all_primitive_roots(31)
+# calc_all_primitive_roots(33)
 # 4 21
 # 4 14
 # 4 7
 # 5 10
-# solve_quadratic_comparison(5, 10)
+solve_quadratic_comparison(7, 13)
 # Pollard_p_1_factorization(687, 3)
 # Pollard_rho_factorization(687)
