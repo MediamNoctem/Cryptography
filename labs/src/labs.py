@@ -358,7 +358,6 @@ def Pollard_rho_factorization(n):
 
 
 # ------------ lab8 ------------
-
 class MersenneTwister:
     def __init__(self, seed):
         self.n = 7
