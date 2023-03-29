@@ -1,3 +1,7 @@
+import check_primitiveness
+import random
+
+
 # ------------ lab1 ------------
 # Поиск всех делителей
 def find_divisors(n):
@@ -277,6 +281,29 @@ def solve_quadratic_comparison(a, n):
         return decisions
 
 
+# ------------ lab3 ------------
+def generator_GF_2_n(n, p=None):
+    polynomial = [[0], [1]]
+    x = 1
+    for i in range(2 ** n - 2):
+        x += 1
+        y = int(bin(x)[2:])
+        z = []
+        while y != 0:
+            z = [y % 10] + z
+            y //= 10
+        if p is not None:
+            z = check_primitiveness.divmod_polly(z, p)[1]
+        polynomial.append(z)
+    return polynomial
+
+
+def find_all_primitives_of_Galois_field(n, p):
+    polynomial = generator_GF_2_n(n, p)
+    for item in polynomial:
+        if check_primitiveness.is_neprivodim(item) and check_primitiveness.is_primitiv(item):
+            print("Полином " + str(item) + " является примитивом.")
+
 # ------------ lab5 ------------
 def Pollard_p_1_factorization(n, B):
     print("--------------------------------------------------------")
@@ -331,6 +358,24 @@ def Pollard_rho_factorization(n):
 
 
 # ------------ lab8 ------------
+
+class MersenneTwister:
+    def __init__(self, seed):
+        self.n = 7
+        self.p = 2 ** self.n - 1
+        self.x = [seed]  # Задание начального значения
+        self.index = 0
+
+        self.x[0] = seed
+
+    def make_posled(self, posled_len):
+        for i in range(1, posled_len):
+            self.x.append((self.x[i - 1] * self.x[i - 1]) % self.p)
+
+        for i in range(len(self.x)):
+            self.x[i] <<= random.randint(0, self.n - 1)
+
+
 def BPS(f, x, file_name):
     file = open(file_name, "a")
     alpha = []
@@ -348,14 +393,24 @@ def BPS(f, x, file_name):
     file.close()
 
 
+# ------------ lab1 ------------
 # calc_all_primitive_roots(33)
+
+# ------------ lab2 ------------
 # 4 21
 # 4 14
 # 4 7
 # 5 10
 # solve_quadratic_comparison(7, 13)
+
+# ------------ lab3 ------------
+# find_all_primitives_of_Galois_field(4, [1, 0, 0, 1, 1])
+
+# ------------ lab5 ------------
 # Pollard_p_1_factorization(687, 3)
 # Pollard_rho_factorization(687)
+
+# ------------ lab8 ------------
 f10 = [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1]
 x10 = [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 # BPS(f10, x10, "BPS_primitive_10.txt")
@@ -364,4 +419,8 @@ x6 = [1, 0, 0, 0, 0, 1]
 # BPS(f6, x6, "BPS_primitive_6.txt")
 f14 = [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1]
 x14 = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-BPS(f14, x14, "BPS_primitive_14.txt")
+# BPS(f14, x14, "BPS_primitive_14.txt")
+
+# mt = MersenneTwister(5678)
+# mt.make_posled(10)
+# print(mt.x)
